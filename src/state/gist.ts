@@ -1,12 +1,15 @@
 import { reactive, computed } from "vue"
 import token from "./token"
 
+import Axios from "axios"
+
 export interface GistModel {
   title: string
 }
 
 interface GistState {
   gists: GistModel[]
+  result: any
 }
 
 const state = reactive<GistState>({
