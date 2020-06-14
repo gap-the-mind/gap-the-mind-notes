@@ -6,7 +6,7 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@octokit/graphql": "^4.5.1",
+    "@octokit/core": "^3.0.0",
     "vue": "^3.0.0-beta.14"
   },
   "devDependencies": {

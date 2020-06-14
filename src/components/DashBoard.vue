@@ -1,6 +1,11 @@
 <template>
   <h1>Dashboard</h1>
 
+  <button @click="addGist()">Add</button>
+  <button @click="fetchGist()">Fetch</button>
+
+  {{ result }}
+
   <Gist v-bind:gist="gist" v-for="gist in gists" :key="gist" />
 </template>
 

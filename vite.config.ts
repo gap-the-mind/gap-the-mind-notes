@@ -1,5 +1,5 @@
 export default {
   optimizeDeps: {
-    exclude: ["@octokit/graphql"],
+    exclude: ["@octokit/core"],
   },
 }
