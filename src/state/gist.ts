@@ -1,7 +1,5 @@
 import { reactive, computed } from "vue"
-import token from "./token"
-
-import Axios from "axios"
+import graphQL from "./graphql"
 
 export interface GistModel {
   title: string
@@ -17,7 +15,20 @@ const state = reactive<GistState>({
   result: {},
 })
 
-async function fetchNotes() {}
+async function fetchNotes() {
+  try {
+    const res = await graphQL(`query {
+      currentUser {
+        name
+      }
+  }
+  
+  `)
+    state.result = await res.json()
+  } catch (e) {
+    state.result = e
+  }
+}
 
 export function useGist() {
   return {

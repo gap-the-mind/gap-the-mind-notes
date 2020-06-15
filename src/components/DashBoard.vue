@@ -2,7 +2,7 @@
   <h1>Dashboard</h1>
 
   <button @click="addGist()">Add</button>
-  <button @click="fetchGist()">Fetch</button>
+  <button @click="fetchNotes()">Fetch</button>
 
   {{ result }}
 

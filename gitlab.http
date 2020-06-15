@@ -1,0 +1,10 @@
+POST https://gitlab.com/api/graphql
+Content-Type: application/json
+Authorization: Bearer bCDv4xsiYHREZ-xoJesu
+X-REQUEST-TYPE: GraphQL
+
+query {
+    currentUser {
+      name
+    }
+}
