@@ -1,16 +1,16 @@
 <template>
-  <h2>{{ gist }}</h2>
+  <h2>{{ note }}</h2>
 </template>
 
 <script lang="ts">
 import { ref, reactive, computed, watchEffect, onMounted } from "vue"
-import { GistModel } from "../state/gist"
+import { NoteModel } from "../state/note"
 
 interface Props {}
 
 export default {
   props: {
-    gist: {},
+    note: {},
   },
   setup() {},
 }

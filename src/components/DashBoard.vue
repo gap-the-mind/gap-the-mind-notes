@@ -1,27 +1,24 @@
 <template>
   <h1>Dashboard</h1>
 
-  <button @click="addGist()">Add</button>
-  <button @click="fetchNotes()">Fetch</button>
+  <button @click="addNewNote()">Add</button>
 
-  {{ result }}
-
-  <Gist v-bind:gist="gist" v-for="gist in gists" :key="gist" />
+  <Note v-bind:note="note" v-for="note in notes" :key="note" />
 </template>
 
 <script lang="ts">
 import { ref, reactive, computed } from "vue"
-import { useGist } from "../state/gist"
+import { useNotes } from "../state/note"
 
-import Gist from "./Gist.vue"
+import Note from "./Note.vue"
 
 export default {
   components: {
-    Gist,
+    Note,
   },
   setup() {
     return {
-      ...useGist(),
+      ...useNotes(),
     }
   },
 }
