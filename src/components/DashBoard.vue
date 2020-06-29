@@ -2,8 +2,11 @@
   <h1>Dashboard</h1>
 
   <button @click="addNewNote()">Add</button>
+   <button @click="getNotes()">Get</button>
 
   <Note v-bind:note="note" v-for="note in notes" :key="note" />
+
+  {{ result }}
 </template>
 
 <script lang="ts">
