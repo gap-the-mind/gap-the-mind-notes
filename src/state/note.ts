@@ -8,12 +8,10 @@ export interface NoteModel {
 
 interface NotesState {
   notes: NoteModel[]
-  result: any
 }
 
 const state = reactive<NotesState>({
   notes: [],
-  result: {},
 })
 
 async function getNotes() {
@@ -35,7 +33,9 @@ async function getNotes() {
   `
 
   const result = await graphqlClient.query({ query })
-  state.result = result
+  state.notes = result.data.currentUser.notesConnection.edges.map(
+    (n: any) => n.node
+  )
 }
 
 export function useNotes() {
