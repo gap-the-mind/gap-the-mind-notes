@@ -1,5 +1,6 @@
 <template>
-  <h2>{{ note }}</h2>
+  <h2>{{ note.title }}</h2>
+  <div>{{ note.text }}</div>
 </template>
 
 <script lang="ts">
