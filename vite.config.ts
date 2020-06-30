@@ -8,5 +8,6 @@ export default {
   },
   optimizeDeps: {
     include: ["graphql-tag"],
+    exclude: [],
   },
 }
