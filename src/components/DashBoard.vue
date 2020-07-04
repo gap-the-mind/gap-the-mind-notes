@@ -2,7 +2,6 @@
   <h1>Dashboard</h1>
 
   <button @click="addNote()">Add</button>
-  <button @click="getNotes()">Get</button>
 
   <div id="notes-zone">
     <div v-for="note in notes" :key="note.id">
@@ -24,8 +23,11 @@ export default {
     Note,
   },
   setup() {
+    const un = useNotes()
+    un.getNotes()
+
     return {
-      ...useNotes(),
+      ...un,
     }
   },
 }
