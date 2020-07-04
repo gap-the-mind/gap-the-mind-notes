@@ -1,4 +1,4 @@
-import { reactive, computed } from "vue"
+import { reactive, toRefs } from "vue"
 import { graphqlClient } from "./graphql"
 import gql from "graphql-tag"
 
@@ -45,37 +45,37 @@ async function addNote() {
     mutation {
       createNote(title: "Test de création") {
         id
+        title
+        text
       }
     }
   `
 
   const result = await graphqlClient.mutate({ mutation })
 
-  const id = result.data.createNote.id
+  const note = result.data.createNote
 
-  return getNotes()
+  state.notes.push(note)
 }
 
 async function deleteNote(id: string) {
-  const mutation = gql(
-    `
-    mutation {
+  const mutation = gql`
+    mutation($id: ID!) {
       deleteNode(id: $id) {
         title
         text
       }
-    }`,
-    ["id"]
-  )
+    }
+  `
 
-  const result = await graphqlClient.mutate({ mutation })
+  const result = await graphqlClient.mutate({ mutation, variables: { id } })
 
-  return getNotes()
+  state.notes = state.notes.filter((n) => n.id != id)
 }
 
 export function useNotes() {
   return {
-    notes: computed(() => state.notes),
+    notes: toRefs(state).notes,
     addNote,
     getNotes,
     deleteNote,
