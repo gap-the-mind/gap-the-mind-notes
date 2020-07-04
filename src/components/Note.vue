@@ -1,8 +1,8 @@
 <template>
-  <div id="outer">
-    <div id="title">{{ note.title }}</div>
+  <article id="outer">
+    <input class="title" v-model="note.title" />
     <textarea id="text-zone">{{ note.text }}</textarea>
-  </div>
+  </article>
 </template>
 
 <script lang="ts">
@@ -29,8 +29,10 @@ export default {
   flex-flow: column;
 }
 
-#title {
+.title {
+  flex: none;
   margin: 10px;
+  font-weight: bold;
 }
 
 #text-zone {

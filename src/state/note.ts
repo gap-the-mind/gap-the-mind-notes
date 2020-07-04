@@ -3,7 +3,9 @@ import { graphqlClient } from "./graphql"
 import gql from "graphql-tag"
 
 export interface NoteModel {
+  id: string
   title: string
+  text: string
 }
 
 interface NotesState {
@@ -38,11 +40,44 @@ async function getNotes() {
   )
 }
 
+async function addNote() {
+  const mutation = gql`
+    mutation {
+      createNote(title: "Test de création") {
+        id
+      }
+    }
+  `
+
+  const result = await graphqlClient.mutate({ mutation })
+
+  const id = result.data.createNote.id
+
+  return getNotes()
+}
+
+async function deleteNote(id: string) {
+  const mutation = gql(
+    `
+    mutation {
+      deleteNode(id: $id) {
+        title
+        text
+      }
+    }`,
+    ["id"]
+  )
+
+  const result = await graphqlClient.mutate({ mutation })
+
+  return getNotes()
+}
+
 export function useNotes() {
   return {
     notes: computed(() => state.notes),
-    result: computed(() => state.result),
-    addNewNote: () => state.notes.push({ title: "Narf" }),
+    addNote,
     getNotes,
+    deleteNote,
   }
 }

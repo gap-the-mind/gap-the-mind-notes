@@ -1,11 +1,15 @@
 <template>
   <h1>Dashboard</h1>
 
-  <button @click="addNewNote()">Add</button>
+  <button @click="addNote()">Add</button>
   <button @click="getNotes()">Get</button>
 
   <div id="notes-zone">
-    <Note v-bind:note="note" v-for="note in notes" :key="note" />
+    <div v-for="note in notes" :key="note.id">
+      <Note v-bind:note="note" />
+
+      <button @click="deleteNote(note.id)">X</button>
+    </div>
   </div>
 </template>
 
