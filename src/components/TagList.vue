@@ -7,7 +7,12 @@
       :tag="tag"
       @delete-tag="deleteTag(tag.id)"
     />
-    <input class="tag-input" v-model="tagsInput" v-on:keyup.enter="onEnter()" />
+    <input
+      class="tag-input"
+      v-model="tagsInput"
+      v-on:keyup.enter="onEnter()"
+      placeholder="#add"
+    />
   </div>
 </template>
 
@@ -78,8 +83,12 @@ export default {
 }
 
 .tag-input {
-  flex: auto;
+  flex: 0 0;
+  align-self: center;
+
   border-radius: 5px;
-  /* border: none; */
+  max-width: 100px;
+
+  border: none;
 }
 </style>

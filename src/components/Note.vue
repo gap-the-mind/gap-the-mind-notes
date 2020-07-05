@@ -69,9 +69,8 @@ export default {
   flex: none;
 
   font-weight: bold;
-
-  border-radius: 5px;
-  border: 1px solid #ccc;
+  outline: none;
+  border: none;
 }
 
 #text-zone {
@@ -79,9 +78,8 @@ export default {
 
   padding: 10px;
   line-height: 1.5;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-
+  border: none;
+  outline: none;
   resize: none;
 }
 
