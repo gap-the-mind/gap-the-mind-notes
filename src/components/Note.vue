@@ -2,18 +2,20 @@
   <article id="outer">
     <input class="title note-item" v-model="note.title" />
     <textarea id="text-zone" class="note-item">{{ note.text }}</textarea>
-    <div id="tags" class="note-item"></div>
+    <TagList id="tags" class="note-item" :tags="note.tags" />
   </article>
 </template>
 
 <script lang="ts">
-import { ref, reactive, computed, watchEffect, onMounted } from "vue"
 import { NoteModel } from "../state/note"
-interface Props {}
+import TagList from "./TagList.vue"
 
 export default {
   props: {
     note: {},
+  },
+  components: {
+    TagList,
   },
   setup() {},
 }
@@ -69,7 +71,8 @@ export default {
 
 #tags {
   flex: initial;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+
+  display: flex;
+  flex-direction: row;
 }
 </style>
