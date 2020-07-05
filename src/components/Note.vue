@@ -1,7 +1,8 @@
 <template>
   <article id="outer">
-    <input class="title" v-model="note.title" />
-    <textarea id="text-zone">{{ note.text }}</textarea>
+    <input class="title note-item" v-model="note.title" />
+    <textarea id="text-zone" class="note-item">{{ note.text }}</textarea>
+    <div id="tags" class="note-item"></div>
   </article>
 </template>
 
@@ -25,20 +26,38 @@ export default {
   height: 300px;
   margin: 15px;
   border-radius: 20px;
+
   display: flex;
   flex-flow: column;
 }
 
+.note-item {
+  margin-left: 10px;
+  margin-right: 10px;
+
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.note-item:first-child {
+  margin-top: 10px;
+}
+
+.note-item:last-child {
+  margin-bottom: 10px;
+}
+
 .title {
   flex: none;
-  margin: 10px;
+
   font-weight: bold;
+
+  border-radius: 5px;
+  border: 1px solid #ccc;
 }
 
 #text-zone {
   flex: auto;
-  margin: 10px;
-  margin-top: 0px;
 
   padding: 10px;
   line-height: 1.5;
@@ -46,5 +65,11 @@ export default {
   border: 1px solid #ccc;
 
   resize: none;
+}
+
+#tags {
+  flex: initial;
+  border-radius: 5px;
+  border: 1px solid #ccc;
 }
 </style>

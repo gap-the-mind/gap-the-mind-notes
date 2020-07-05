@@ -2,10 +2,14 @@ import { reactive, toRefs } from "vue"
 import { graphqlClient } from "./graphql"
 import gql from "graphql-tag"
 
+export interface TagModel {
+  id: string
+}
 export interface NoteModel {
   id: string
   title: string
   text: string
+  tags: string[]
 }
 
 interface NotesState {
@@ -27,6 +31,9 @@ async function getNotes() {
               id
               title
               text
+              tags {
+                id
+              }
             }
           }
         }

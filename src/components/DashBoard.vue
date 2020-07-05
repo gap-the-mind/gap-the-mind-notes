@@ -3,11 +3,13 @@
 
   <button @click="addNote()">Add</button>
 
-  <div id="notes-zone">
-    <div v-for="note in notes" :key="note.id">
-      <Note v-bind:note="note" />
+  <div id="scroll-area">
+    <div id="notes-area">
+      <div v-for="note in notes" :key="note.id">
+        <Note v-bind:note="note" />
 
-      <button @click="deleteNote(note.id)">X</button>
+        <button @click="deleteNote(note.id)">X</button>
+      </div>
     </div>
   </div>
 </template>
@@ -34,7 +36,7 @@ export default {
 </script>
 
 <style scoped>
-#notes-zone {
+#notes-area {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: 350px;
