@@ -1,5 +1,16 @@
 import gql from "graphql-tag"
 
+const noteFragment = gql`
+  fragment noteFields on Note {
+    id
+    title
+    text
+    tags {
+      id
+    }
+  }
+`
+
 export const getNoteQuery = gql`
   query {
     currentUser {
@@ -7,45 +18,36 @@ export const getNoteQuery = gql`
       notesConnection {
         edges {
           node {
-            id
-            title
-            text
-            tags {
-              id
-            }
+            ...noteFields
           }
         }
       }
     }
   }
+  ${noteFragment}
 `
 export const addNoteMutation = gql`
   mutation {
     createNote(title: "Test de création") {
-      id
-      title
-      text
+      ...noteFields
     }
   }
+  ${noteFragment}
 `
 export const deleteNoteMutation = gql`
   mutation($id: ID!) {
     deleteNode(id: $id) {
-      title
-      text
+      ...noteFields
     }
   }
+  ${noteFragment}
 `
 
 export const editNoteMutation = gql`
   mutation($id: ID!, $edition: EditNoteInput!) {
     editNote(id: $id, edition: $edition) {
-      id
-      text
-      title
-      tags {
-        id
-      }
+      ...noteFields
     }
   }
+  ${noteFragment}
 `
