@@ -1,29 +1,69 @@
 <template>
-  <div id="tag-list">
-    <Tag v-for="tag in tags" :key="tag.id" :tag="tag" />
+  <div class="tag-list">
+    <Tag class="tag" v-for="tag in tags" :key="tag.id" :tag="tag" />
+    <input class="tag-input" v-model="tagsInput" v-on:keyup.enter="onEnter()" />
   </div>
 </template>
 
 <script lang="ts">
+import { ref, PropType } from "vue"
 import Tag from "./Tag.vue"
+import { TagModel } from "../state/notes/model"
+import { useNotes } from "../state/notes"
+
+interface Props {
+  tags: TagModel[]
+}
 
 export default {
   props: {
-    tags: [],
+    tags: {
+      type: Array as PropType<TagModel[]>,
+      required: true,
+    },
   },
   components: {
     Tag,
   },
-  setup() {},
+  setup(props, { emit }) {
+    const tagsInput = ref("")
+
+    const onEnter = () => {
+      const allTags = props.tags
+        .map((t) => t.id)
+        .concat(tagsInput.value.split("#"))
+        .map((t) => t.trim())
+        .filter((t) => t !== "")
+
+      const uniqueTags =  new Set(allTags)
+
+      emit("update-tags", Array.from(uniqueTags).map(t => ({id:t})))
+
+      tagsInput.value = ""
+    }
+
+    return {
+      onEnter,
+      tagsInput,
+    }
+  },
 }
 </script>
 
-<style>
-#tag {
-  font-size: smaller;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+<style scoped>
+.tag-list {
+  display: flex;
+  flex-direction: row;
+}
 
-  padding: 3px;
+.tag {
+  margin: 2px;
+  flex: initial;
+}
+
+.tag-input {
+  flex: auto;
+  border-radius: 5px;
+  border: none;
 }
 </style>

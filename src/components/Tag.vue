@@ -1,17 +1,26 @@
 <template>
-  <div id="tag">{{ tag.id }}</div>
+  <div id="tag">
+    <span>{{ tag.id }}</span>
+    <span class="mdi mdi-close"></span>
+  </div>
 </template>
 
 <script lang="ts">
+import { PropType } from "vue"
+import { TagModel } from "../state/notes/model"
+
 export default {
   props: {
-    tag: {},
+    tag: {
+      type: Object as PropType<TagModel>,
+      required: true,
+    },
   },
   setup() {},
 }
 </script>
 
-<style>
+<style scoped>
 #tag {
   font-size: smaller;
   border-radius: 5px;

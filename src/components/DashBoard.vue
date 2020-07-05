@@ -1,22 +1,23 @@
 <template>
-  <h1>Dashboard</h1>
+  <div>
+    <h1>Dashboard</h1>
 
-  <button @click="addNote()">Add</button>
+    <button @click="addNote()">Add</button>
 
-  <div id="scroll-area">
-    <div id="notes-area">
-      <div v-for="note in notes" :key="note.id">
-        <Note v-bind:note="note" />
+    <div id="scroll-area">
+      <div id="notes-area">
+        <div v-for="note in notes" :key="note.id">
+          <Note v-bind:note="note" />
 
-        <button @click="deleteNote(note.id)">X</button>
+          <button @click="deleteNote(note.id)">X</button>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { ref, reactive, computed } from "vue"
-import { useNotes } from "../state/note"
+import { useNotes } from "../state/notes"
 
 import Note from "./Note.vue"
 

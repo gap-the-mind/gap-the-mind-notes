@@ -1,27 +1,43 @@
 <template>
   <article id="outer">
     <input class="title note-item" v-model="note.title" />
-    <textarea id="text-zone" class="note-item">{{ note.text }}</textarea>
-    <TagList id="tags" class="note-item" :tags="note.tags" />
+    <textarea id="text-zone" class="note-item" v-model="note.text" />
+    <TagList
+      id="tags"
+      class="note-item"
+      :tags="note.tags"
+      @update-tags="updateTags(note.id, $event)"
+    />
   </article>
 </template>
 
 <script lang="ts">
-import { NoteModel } from "../state/note"
+import { PropType } from "vue"
 import TagList from "./TagList.vue"
+import { NoteModel } from "../state/notes/model"
+import { useNotes } from "../state/notes"
 
 export default {
   props: {
-    note: {},
+    note: {
+      type: Object as PropType<NoteModel>,
+      required: true,
+    },
   },
   components: {
     TagList,
   },
-  setup() {},
+  setup(props) {
+    const { updateTags } = useNotes()
+
+    return {
+      updateTags,
+    }
+  },
 }
 </script>
 
-<style>
+<style scoped>
 #outer {
   box-shadow: 2px 2px 10px -5px rgba(50, 50, 50, 0.75);
   width: 300px;
@@ -71,8 +87,5 @@ export default {
 
 #tags {
   flex: initial;
-
-  display: flex;
-  flex-direction: row;
 }
 </style>
