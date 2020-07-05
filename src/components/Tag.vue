@@ -1,7 +1,7 @@
 <template>
   <div id="tag">
     <span>{{ tag.id }}</span>
-    <span class="mdi mdi-close"></span>
+    <span class="mdi mdi-close" @click="deleteTag"></span>
   </div>
 </template>
 
@@ -16,9 +16,17 @@ export default {
       required: true,
     },
   },
-  setup() {},
+  setup(props, { emit }) {
+    const deleteTag = () => {
+      emit("delete-tag")
+    }
+
+    return {
+      deleteTag,
+    }
+  },
 }
-</script>
+</script> 
 
 <style scoped>
 #tag {
@@ -27,5 +35,10 @@ export default {
   border: 1px solid #ccc;
 
   padding: 3px;
+}
+
+.mdi {
+  justify-content: baseline;
+  cursor: pointer;
 }
 </style>

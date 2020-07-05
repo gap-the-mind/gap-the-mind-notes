@@ -1,6 +1,12 @@
 <template>
   <div class="tag-list">
-    <Tag class="tag" v-for="tag in tags" :key="tag.id" :tag="tag" />
+    <Tag
+      class="tag"
+      v-for="tag in tags"
+      :key="tag.id"
+      :tag="tag"
+      @delete-tag="deleteTag(tag.id)"
+    />
     <input class="tag-input" v-model="tagsInput" v-on:keyup.enter="onEnter()" />
   </div>
 </template>
@@ -35,15 +41,25 @@ export default {
         .map((t) => t.trim())
         .filter((t) => t !== "")
 
-      const uniqueTags =  new Set(allTags)
+      const uniqueTags = new Set(allTags)
 
-      emit("update-tags", Array.from(uniqueTags).map(t => ({id:t})))
+      emit(
+        "update-tags",
+        Array.from(uniqueTags).map((t) => ({ id: t }))
+      )
 
       tagsInput.value = ""
     }
 
+    const deleteTag = (id: string) =>
+      emit(
+        "update-tags",
+        props.tags.filter((t) => t.id !== id).map((t) => ({ id: t.id }))
+      )
+
     return {
       onEnter,
+      deleteTag,
       tagsInput,
     }
   },
@@ -53,7 +69,7 @@ export default {
 <style scoped>
 .tag-list {
   display: flex;
-  flex-direction: row;
+  flex-flow: row wrap;
 }
 
 .tag {
@@ -64,6 +80,6 @@ export default {
 .tag-input {
   flex: auto;
   border-radius: 5px;
-  border: none;
+  /* border: none; */
 }
 </style>

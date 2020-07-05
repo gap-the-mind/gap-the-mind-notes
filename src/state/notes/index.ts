@@ -38,8 +38,6 @@ async function deleteNote(id: string) {
 }
 
 async function updateTags(id: string, tags: TagModel[]) {
-  console.log(tags)
-
   const result = await graphqlClient.mutate({
     mutation: editNoteMutation,
     variables: { id, edition: { tags } },
