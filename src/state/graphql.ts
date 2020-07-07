@@ -1,17 +1,5 @@
-import Axios from "axios"
-import token from "./token"
+import ApolloClient from "apollo-boost"
 
-const url = "/graphql"
-
-const headers = {
-  Authorization: `Bearer ${token}`,
-  "Content-Type": "application/json",
-}
-
-export default function graphQL(query: string) {
-  return fetch(url, {
-    method: "POST",
-    headers,
-    body: JSON.stringify({ query }),
-  })
-}
+export const graphqlClient = new ApolloClient({
+  uri: "http://localhost:3000/graphql",
+})
