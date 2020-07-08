@@ -17,6 +17,32 @@ import Tag from "./Tag.vue"
 import { TagModel } from "../state/notes/model"
 import { useNotes } from "../state/notes"
 
+function splitTags(text: string): string[] {
+  // https://stackoverflow.com/a/43788399
+
+  const re = /^"[^"]*"$/ // Check if argument is surrounded with double-quotes
+  const re2 = /^([^"]|[^"].*?[^"])$/ // Check if argument is NOT surrounded with double-quotes
+
+  const arr = []
+  let argPart = null
+
+  text &&
+    text.split(" ").forEach((arg) => {
+      if ((re.test(arg) || re2.test(arg)) && !argPart) {
+        arr.push(arg)
+      } else {
+        argPart = argPart ? argPart + " " + arg : arg
+        // If part is complete (ends with a double quote), we can add it to the array
+        if (/"$/.test(argPart)) {
+          arr.push(argPart.slice(1, -1))
+          argPart = null
+        }
+      }
+    })
+
+  return arr
+}
+
 interface Props {
   tags: TagModel[]
 }
@@ -37,7 +63,7 @@ export default {
     const onEnter = () => {
       const allTags = props.tags
         .map((t) => t.id)
-        .concat(tagsInput.value.split("#"))
+        .concat(splitTags(tagsInput.value))
         .map((t) => t.trim())
         .filter((t) => t !== "")
 
