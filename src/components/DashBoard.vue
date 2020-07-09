@@ -6,6 +6,8 @@
 
     <div id="scroll-area">
       <div id="notes-area">
+        <Lane :notes="notes" />
+
         <div v-for="note in notes" :key="note.id">
           <Note v-bind:note="note" />
 
@@ -20,10 +22,12 @@
 import { useNotes } from "../state/notes"
 
 import Note from "./Note.vue"
+import Lane from "./Lane.vue"
 
 export default {
   components: {
     Note,
+    Lane,
   },
   setup() {
     const un = useNotes()

@@ -1,4 +1,4 @@
-import { reactive, toRefs } from "vue"
+import { reactive, toRefs, computed } from "vue"
 import { graphqlClient } from "../graphql"
 
 import { NotesState, TagModel } from "./model"

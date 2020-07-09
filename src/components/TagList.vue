@@ -1,12 +1,6 @@
 <template>
   <div class="tag-list">
-    <Tag
-      class="tag"
-      v-for="tag in tags"
-      :key="tag.id"
-      :tag="tag"
-      @delete-tag="deleteTag(tag.id)"
-    />
+    <Tag class="tag" v-for="tag in tags" :key="tag.id" :tag="tag" @delete-tag="deleteTag(tag.id)" />
     <input class="tag-input" v-model="tagsInput" v-on:keyup.enter="onEnter()" />
   </div>
 </template>
@@ -17,14 +11,13 @@ import Tag from "./Tag.vue"
 import { TagModel } from "../state/notes/model"
 import { useNotes } from "../state/notes"
 
-function splitTags(text: string): string[] {
-  // https://stackoverflow.com/a/43788399
-
+// https://stackoverflow.com/a/43788399
+export function splitTags(text: string): string[] {
   const re = /^"[^"]*"$/ // Check if argument is surrounded with double-quotes
   const re2 = /^([^"]|[^"].*?[^"])$/ // Check if argument is NOT surrounded with double-quotes
 
-  const arr = []
-  let argPart = null
+  const arr: string[] = []
+  let argPart: string | null = null
 
   text &&
     text.split(" ").forEach((arg) => {
