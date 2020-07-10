@@ -1,7 +1,7 @@
 <template>
   <div id="tag">
     <input v-model="expression" placeholder="filter" />
-    {{expression}}
+    {{ expression }}
     <div v-for="note in visibleNotes" :key="note.id">
       <Note v-bind:note="note" />
     </div>
@@ -13,7 +13,7 @@ import { PropType, ref, reactive, computed, watchEffect } from "vue"
 import { TagModel, NoteModel } from "../state/notes/model"
 import { useNotes } from "../state/notes"
 
-import lep from "logical-expression-parser"
+import lep from "@gap-the-mind/logical-expression-parser"
 
 import Note from "./Note.vue"
 

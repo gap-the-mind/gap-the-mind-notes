@@ -6,10 +6,10 @@
     "build": "vite build"
   },
   "dependencies": {
+    "@gap-the-mind/logical-expression-parser": "link:../logical-expression-parser",
     "@mdi/font": "^5.3.45",
     "apollo-boost": "^0.4.9",
     "graphql": "^15.2.0",
-    "logical-expression-parser": "^1.0.0",
     "vue": "^3.0.0-beta.18"
   },
   "devDependencies": {

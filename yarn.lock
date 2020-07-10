@@ -47,6 +47,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
+"@gap-the-mind/logical-expression-parser@link:../logical-expression-parser":
+  version "0.0.0"
+  uid ""
+
 "@mdi/font@^5.3.45":
   version "5.3.45"
   resolved "https://registry.yarnpkg.com/@mdi/font/-/font-5.3.45.tgz#086d3ef77dee260c04dd5a593af602c250e5b315"
@@ -1891,11 +1895,6 @@ log-symbols@^3.0.0:
   integrity sha512-dSkNGuI7iG3mfvDzUuYZyvk5dD9ocYCYzNU6CYDE6+Xqd+gwme6Z00NS3dUh8mq/73HaEtT7m6W+yUPtU6BZnQ==
   dependencies:
     chalk "^2.4.2"
-
-logical-expression-parser@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/logical-expression-parser/-/logical-expression-parser-1.0.0.tgz#dc8c3c1172124eb5046fe24bd01ea73b92834830"
-  integrity sha512-1IDAYwy4KurkZc4cico8sw3MpYSlsjiFlvJl0XAAMpq4DxGnCs4+65yRZwCIOKaP+m6EIooH6AIOBmXKSNYk/w==
 
 lru-cache@^5.1.1:
   version "5.1.1"
