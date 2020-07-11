@@ -4,11 +4,6 @@
     <meta charset="UTF-8" />
     <title>Layout test</title>
 
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/simplebar@latest/dist/simplebar.css"
-    />
-    <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
     <style>
       body {
         background-color: aqua;
@@ -26,9 +21,27 @@
         display: flex;
       }
 
+      #lanes {
+        display: flex;
+      }
+
       .lane {
         background-color: chocolate;
-        overflow: auto;
+        overflow-y: hidden;
+        flex: 1;
+      }
+
+      .lane:hover {
+        overflow-y: auto;
+      }
+
+      .lane:hover + .scroll-bar {
+        display: none;
+      }
+
+      .lane-container {
+        background-color: chocolate;
+        display: flex;
       }
 
       #all {
@@ -37,12 +50,8 @@
         flex-grow: 1;
         overflow: auto;
 
-        display: flex;
+        display: inline-flex;
         flex-flow: column wrap;
-      }
-
-      #lanes {
-        display: flex;
       }
 
       .note {
@@ -53,21 +62,38 @@
 
         margin: 10px;
       }
+
+      .lane > .note {
+        margin-bottom: 20px;
+      }
+
+      .scroll-bar {
+        overflow-x: hidden;
+        overflow-y: scroll;
+        visibility: hidden;
+        float: left;
+      }
     </style>
   </head>
   <body>
     <div id="app">
       <div id="lanes">
-        <div class="lane" data-simplebar>
-          <div class="note"></div>
-          <div class="note"></div>
-          <div class="note"></div>
-          <div class="note"></div>
+        <div class="lane-container">
+          <div class="lane">
+            <div class="note"></div>
+            <div class="note"></div>
+            <div class="note"></div>
+            <div class="note"></div>
+          </div>
+          <div class="scroll-bar"></div>
         </div>
-        <div class="lane" data-simplebar>
-          <div class="note"></div>
-          <div class="note"></div>
-          <div class="note"></div>
+        <div class="lane-container">
+          <div class="lane">
+            <div class="note"></div>
+            <div class="note"></div>
+            <div class="note"></div>
+          </div>
+          <div class="scroll-bar"></div>
         </div>
       </div>
 

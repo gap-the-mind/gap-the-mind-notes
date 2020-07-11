@@ -1,11 +1,11 @@
 <template>
   <!--<button @click="addNote()">Add</button>-->
-
-  <div id="notes-area">
+  <div id="dashboard">
     <div id="lanes">
       <Lane :notes="notes" />
     </div>
-    <div id="all-notes">
+
+    <div id="all">
       <Note v-for="note in notes" :key="note.id" v-bind:note="note" />
 
       <!--<button @click="deleteNote(note.id)">X</button>-->
@@ -36,18 +36,26 @@ export default {
 </script>
 
 <style scoped>
-#notes-area {
-  display: flex;
-  flex-direction: row;
+#dashboard {
+  background-color: burlywood;
+
+  width: 100%;
   height: 100%;
-  widows: 100%;
+
+  display: flex;
 }
 
-#all-notes {
+#lanes {
   display: flex;
-  flex: auto;
+}
+
+#all {
+  background-color: coral;
+
+  flex-grow: 1;
+  overflow: auto;
+
+  display: inline-flex;
   flex-flow: column wrap;
-  height: 100%;
-  flex-basis: 20px;
 }
 </style>

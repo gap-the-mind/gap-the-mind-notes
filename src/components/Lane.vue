@@ -1,5 +1,5 @@
 <template>
-  <div id="tag">
+  <div class="lane">
     <input v-model="expression" placeholder="filter" />
     {{ test }}
     <div v-for="note in visibleNotes" :key="note.id">
@@ -66,4 +66,9 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.lane {
+  overflow-y: scroll;
+  width: calc(300px + 2 * 10px);
+}
+</style>
