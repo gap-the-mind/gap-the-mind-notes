@@ -6,12 +6,15 @@
 
     <div id="scroll-area">
       <div id="notes-area">
-        <Lane :notes="notes" />
+        <div id="lanes">
+          <Lane :notes="notes" />
+        </div>
+        <div id="all-notes">
+          <div v-for="note in notes" :key="note.id">
+            <Note v-bind:note="note" />
 
-        <div v-for="note in notes" :key="note.id">
-          <Note v-bind:note="note" />
-
-          <button @click="deleteNote(note.id)">X</button>
+            <button @click="deleteNote(note.id)">X</button>
+          </div>
         </div>
       </div>
     </div>

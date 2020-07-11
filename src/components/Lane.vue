@@ -1,7 +1,7 @@
 <template>
   <div id="tag">
     <input v-model="expression" placeholder="filter" />
-    {{ expression }}
+    {{ test }}
     <div v-for="note in visibleNotes" :key="note.id">
       <Note v-bind:note="note" />
     </div>
@@ -13,9 +13,18 @@ import { PropType, ref, reactive, computed, watchEffect } from "vue"
 import { TagModel, NoteModel } from "../state/notes/model"
 import { useNotes } from "../state/notes"
 
-import lep from "@gap-the-mind/logical-expression-parser"
+import {
+  ast,
+  LiteralEvaluator,
+  EvalReducer,
+  ToStringReducer,
+} from "@gap-the-mind/logical-expression-parser"
 
 import Note from "./Note.vue"
+
+interface Props {
+  notes: NoteModel[]
+}
 
 export default {
   props: {
@@ -26,8 +35,10 @@ export default {
   components: {
     Note,
   },
-  setup(props, { emit }) {
+  setup(props: Props, { emit }) {
     const expression = ref("")
+    const filter = computed(() => ast(expression.value))
+    const test = computed(() => filter.value.reduce(new ToStringReducer()))
 
     const visibleNotes = computed(() =>
       props.notes.filter((n) => {
@@ -38,14 +49,18 @@ export default {
         }
 
         const tags = n.tags.map((t) => t.id)
+        const reducer = new EvalReducer(
+          (t: string) => tags.indexOf(t.trim()) > -1
+        )
 
-        return lep.parse(exp, (t) => tags.indexOf(t.trim()) > -1)
+        return filter.value.reduce(reducer)
       })
     )
 
     return {
       expression,
       visibleNotes,
+      test,
     }
   },
 }
