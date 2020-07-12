@@ -32,7 +32,7 @@
       }
 
       .lane:hover {
-        overflow-y: auto;
+        overflow-y: scroll;
       }
 
       .lane:hover + .scroll-bar {
@@ -42,6 +42,13 @@
       .lane-container {
         background-color: chocolate;
         display: flex;
+      }
+
+      .scroll-bar {
+        overflow-x: hidden;
+        overflow-y: scroll;
+        visibility: hidden;
+        float: left;
       }
 
       #all {
@@ -65,13 +72,6 @@
 
       .lane > .note {
         margin-bottom: 20px;
-      }
-
-      .scroll-bar {
-        overflow-x: hidden;
-        overflow-y: scroll;
-        visibility: hidden;
-        float: left;
       }
     </style>
   </head>

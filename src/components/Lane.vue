@@ -1,10 +1,13 @@
 <template>
-  <div class="lane">
-    <input v-model="expression" placeholder="filter" />
-    {{ test }}
-    <div v-for="note in visibleNotes" :key="note.id">
-      <Note v-bind:note="note" />
+  <div class="lane-container">
+    <div class="lane">
+      <input v-model="expression" placeholder="filter" />
+      {{ test }}
+      <div v-for="note in visibleNotes" :key="note.id">
+        <Note v-bind:note="note" />
+      </div>
     </div>
+    <div class="scroll-bar"></div>
   </div>
 </template>
 
@@ -68,7 +71,28 @@ export default {
 
 <style scoped>
 .lane {
-  overflow-y: scroll;
+  overflow-y: hidden;
+  flex: 1;
   width: calc(300px + 2 * 10px);
+}
+
+.lane:hover {
+  overflow-y: scroll;
+}
+
+.lane:hover + .scroll-bar {
+  display: none;
+}
+
+.lane-container {
+  background-color: chocolate;
+  display: flex;
+}
+
+.scroll-bar {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  visibility: hidden;
+  float: left;
 }
 </style>
