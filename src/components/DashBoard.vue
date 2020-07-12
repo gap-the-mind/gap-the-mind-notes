@@ -37,8 +37,6 @@ export default {
 
 <style scoped>
 #dashboard {
-  background-color: burlywood;
-
   width: 100%;
   height: 100%;
 
@@ -50,8 +48,6 @@ export default {
 }
 
 #all {
-  background-color: coral;
-
   flex-grow: 1;
   overflow: auto;
 

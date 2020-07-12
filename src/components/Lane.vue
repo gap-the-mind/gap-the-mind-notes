@@ -73,7 +73,7 @@ export default {
 .lane {
   overflow-y: hidden;
   flex: 1;
-  width: calc(300px + 2 * 10px);
+  /* width: calc(300px + 2 * 10px); */
 }
 
 .lane:hover {
@@ -85,7 +85,6 @@ export default {
 }
 
 .lane-container {
-  background-color: chocolate;
   display: flex;
 }
 
