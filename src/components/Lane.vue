@@ -3,9 +3,8 @@
     <div class="lane">
       <input v-model="expression" placeholder="filter" />
       {{ test }}
-      <div v-for="note in visibleNotes" :key="note.id">
-        <Note v-bind:note="note" />
-      </div>
+
+      <Note v-for="note in visibleNotes" :key="note.id" v-bind:note="note" />
     </div>
     <div class="scroll-bar"></div>
   </div>
@@ -93,5 +92,9 @@ export default {
   overflow-y: scroll;
   visibility: hidden;
   float: left;
+}
+
+.lane > .note {
+  margin-bottom: 40px;
 }
 </style>
